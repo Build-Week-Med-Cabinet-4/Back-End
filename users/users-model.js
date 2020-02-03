@@ -1,9 +1,15 @@
 const db = require("../database/dbConfig.js");
 
 module.exports = {
+    get,
     getBy,
     getById,
-    insert
+    add
+}
+
+function get() {
+    return db("users as u")
+        .select("u.id", "u.username")
 }
 
 function getBy(filter) {
@@ -13,12 +19,12 @@ function getBy(filter) {
 
 function getById(id) {
     return db("users as u")
-        .select("u.id, u.username") //DON'T send people the hash.
+        .select("u.id", "u.username") //DON'T send people the hash.
         .where({ id })
         .first();
 }
 
-function insert(user) {
+function add(user) {
     return db("users")
         .insert(user, "id")
         .then(ids => {

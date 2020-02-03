@@ -62,3 +62,24 @@ What the API will respond with on login success:
     message: "Welcome, zoinks!"
 }
 ```
+
+### `GET` to `/api/users`:
+
+Don't send a body, instead send the token you got from the `login` endpoint inside your `Authentication` header.
+
+If successful, the API will return: 
+
+```
+{
+    "0": {
+        "id": 1,
+        "username": "moomer"
+    }
+    "1": {
+        "id": 2,
+        "username": "donkey kong"
+    }
+}
+```
+
+For an easy way to turn this `object` of `objects` into an `array` of `objects` for simpler mapping, you could use `const responseArray = Object.values(response.data)`
