@@ -8,7 +8,7 @@ const verify = require("../auth/authenticate-middleware");
 router.get('/', verify, (req, res) => {
     Users.get()
         .then(users => {
-            res.status(201).json({ ...users });
+            res.status(201).json(Object.values(users));
         })
         .catch(err => {
             console.log(err);

@@ -2,6 +2,8 @@
 
 Under Construction!
 
+Note: Many endpoints in this API return an array of objects for ease-of-mapping in the front end. This is a convenience feature that might not always be available depending on how the data we want to send is structured. In the case that you should receive an object of objects, go ahead and use `Object.values(thingToConvert)` to convert it to an array of objects.
+
 ## Things We, The Back-End, Need To Do
 
 - [ ] Find out -EXACTLY- what recommendations are. What they contain and belong to, etc. 
@@ -70,7 +72,7 @@ Don't send a body, instead send the token you got from the `login` endpoint insi
 If successful, the API will return: 
 
 ```
-{
+[
     "0": {
         "id": 1,
         "username": "moomer"
@@ -79,7 +81,28 @@ If successful, the API will return:
         "id": 2,
         "username": "donkey kong"
     }
-}
+]
 ```
 
-For an easy way to turn this `object` of `objects` into an `array` of `objects` for simpler mapping, you could use `const responseArray = Object.values(response.data)`
+### `GET` to `/api/responses`: 
+
+Be sure to send a valid token in the `Authentication` header. (Once that actually gets implemented...)
+
+The API returns: 
+
+```
+[
+    "0": {
+        "id": 1,
+        "strain": "Nuclear War Cube"
+    },
+    "1": {
+        "id": 2,
+        "strain": "Gamer Fuel"
+    },
+    "2": {
+        "id": 3,
+        "strain": "Dogg's Select"
+    }
+]
+```
