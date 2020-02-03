@@ -4,7 +4,9 @@ module.exports = {
     get,
     getBy,
     getById,
-    add
+    add,
+    remove,
+    update
 }
 
 function get() {
@@ -31,4 +33,16 @@ function add(response) {
             const [id] = ids;
             return getById(id)
         })
-} 
+}
+
+function remove(id) {
+    return db("responses")
+        .delete()
+        .where({ id })
+}
+
+function update(id, newResponse) {
+    return db("responses")
+        .update(newResponse)
+        .where({ id })
+}

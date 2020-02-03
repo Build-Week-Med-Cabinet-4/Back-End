@@ -112,3 +112,56 @@ The API returns an `array` of `objects` containing all `responses`:
     }
 ]
 ```
+
+#### `POST` to `/api/responses`:
+
+Shape you want to send to the API: 
+```
+{
+    "strain": "ouchy hurtie"
+}
+```
+
+The API will send back the new `response` object, including the `id`:
+
+```
+{
+    "id": 5,
+    "strain": "moo"
+}
+```
+
+#### `PUT` to `/api/responses/:id`:
+
+Shape to send the API:
+```
+{
+    "strain": "NEW MOO!!!!11!!"
+}
+```
+
+In this case, the API is going to return the `number of records updated`. Pray for all it's worth that this number is `1` and only ever `1`, not any other number.
+
+If it is ever another number, ping devs IMMEDIATELY.
+
+Response: 
+
+```
+{
+    "updated": 1
+}
+```
+
+#### `DELETE` to `/api/responses/:id`:
+
+You don't have to send anything but a `token` in the `Authorization` header.
+
+The API is going to return the `number of records deleted`:
+
+```
+{
+    "deleted": 1
+}
+```
+
+Same thing as above applies. If this isn't `1`, something has gone horribly wrong.
