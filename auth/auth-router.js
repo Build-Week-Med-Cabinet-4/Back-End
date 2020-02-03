@@ -17,7 +17,8 @@ router.post('/register', (req, res) => {
       res.status(201).json(saved);
     })
     .catch(err => {
-        res.status(500).json({message: 'Who are you. Could not register'})
+      console.log(err);
+      res.status(500).json({ message: 'Who are you. Could not register' })
     });
 });
 
@@ -29,15 +30,19 @@ router.post('/login', (req, res) => {
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
 
-        const token = signToken(user); 
+        const token = signToken(user);
 
-        res.status(200).json({ token }); 
+        res.status(200).json({
+          token: token,
+          message: `Welcome, ${user.username}.`
+        });
       } else {
-        res.status(401).json({message: 'Password or username is wrong:'})
+        res.status(401).json({ message: 'Password or username is wrong:' })
       }
     })
     .catch(err => {
-        res.status(500).json({message: 'Cound not log in', }) //err: err.message 
+      console.log(err);
+      res.status(500).json({ message: 'Cound not log in', }) //err: err.message 
     });
 });
 
