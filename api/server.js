@@ -15,7 +15,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
 
 server.get('/', (req, res) => {
-  res.send("It's alive!");
+  res.send("cONGRATULATIONS, THIS ENDPOINT DOES NOTHING!");
 });
 
 module.exports = server;
