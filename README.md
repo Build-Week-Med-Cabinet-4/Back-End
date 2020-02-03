@@ -10,22 +10,24 @@ Note: Many endpoints in this API return an array of objects for ease-of-mapping 
   - A recommendation is: 
      ```
         {
-            strain: "?"
+            ??????????
         }
      ```
-- [ ] Find out what responses are as well. Relations and stuff.
+- [x] Find out what responses are as well. Relations and stuff.
   - A response is: 
     ```
     {
-        
+        "strain": "sham-wow"
     }
     ```
-- [ ] Get It Hosted (oh boy)
-  - API is hosted at `nowhere at the moment, go away`
+- [x] Get It Hosted (oh boy)
+  - API is hosted at https://med-cabinet-4.herokuapp.com/
 
 ## Endpoints: 
 
-### `POST` to `/api/auth/register`:
+### Auth
+
+#### `POST` to `/api/auth/register`:
 
 API request data shape FROM front-end: 
 
@@ -36,7 +38,7 @@ API request data shape FROM front-end:
 }
 ```
 
-If successful, the API will respond with: 
+If successful, the API will respond with the `newly created user`: 
 
 ```
 {
@@ -45,7 +47,7 @@ If successful, the API will respond with:
 }
 ```
 
-### `POST` to `/api/auth/login`:
+#### `POST` to `/api/auth/login`:
 
 What the front-end should be sending to API: 
 
@@ -56,7 +58,7 @@ What the front-end should be sending to API:
 }
 ```
 
-What the API will respond with on login success: 
+The API will respond with a `token` on login success: 
 
 ```
 {
@@ -65,11 +67,13 @@ What the API will respond with on login success:
 }
 ```
 
-### `GET` to `/api/users`:
+### Users
+
+#### `GET` to `/api/users`:
 
 Don't send a body, instead send the token you got from the `login` endpoint inside your `Authentication` header.
 
-If successful, the API will return: 
+If successful, the API will return an `array` of `objects` containing all `users`: 
 
 ```
 [
@@ -84,11 +88,13 @@ If successful, the API will return:
 ]
 ```
 
-### `GET` to `/api/responses`: 
+### Responses
+
+#### `GET` to `/api/responses`: 
 
 Be sure to send a valid token in the `Authentication` header. (Once that actually gets implemented...)
 
-The API returns: 
+The API returns an `array` of `objects` containing all `responses`: 
 
 ```
 [
