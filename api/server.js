@@ -19,7 +19,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
 
 server.get('/', (req, res) => {
-  res.send("cONGRATULATIONS, THIS ENDPOINT DOES NOTHING!");
+  res.send("CONGRATULATIONS, THIS ENDPOINT DOES NOTHING!");
 });
 
 server.get("/api/responses", (request, response) => {
