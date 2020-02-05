@@ -6,6 +6,13 @@ exports.up = function (knex) {
             .notNullable()
             .unique()
             .index()
+
+        table.integer("user_id")
+            .notNullable()
+            .references("id")
+            .inTable("users")
+            .onDelete("CASCADE")
+            .onUpdate("CASCADE");
     })
 };
 
