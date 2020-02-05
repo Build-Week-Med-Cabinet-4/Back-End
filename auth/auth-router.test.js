@@ -3,8 +3,9 @@ const server = require('../api/server');
 const db = require('../database/dbConfig');
 
 
+/// REGISTER
 describe('auth-router', () => {
-    describe('POST /auth/register', () => {
+    describe('POST api/auth/register', () => {
 
         beforeEach(async () => {
           await db('users')
@@ -13,7 +14,7 @@ describe('auth-router', () => {
 
          it('Should register a new user', () => {
             return request(server)
-            .post('/auth/register')
+            .post('api/auth/register')
             .send({
             "username": "Raymond",
             "password": "test23"
@@ -35,4 +36,34 @@ describe('auth-router', () => {
           });
         });
     })
+
+
+// LOGIN
+
+  describe('POST api/auth/login', () => {
+
+    it('Should result in a successful login', () => {
+      return request(server)
+      .post('api/auth/login')
+      .send({
+          username: "Raymond",
+          password: "test23"
+      })
+      .then(res => {
+        expect(res.status).toBe(200);
+      })
+    });
+
+    it('Should returns JSON', () => {
+      return request(server)
+      .post('api/auth/login')
+      .send({
+          username: "Raymond",
+          password: "test23"
+      })
+      .then(res => {            
+        expect(res.type).toMatch(/json/i);
+      });
+    });
+  });  
 })
