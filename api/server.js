@@ -17,7 +17,7 @@ server.use('/api/users', usersRouter);
 server.use("/api/responses", responseRouter);
 
 server.get('/', (req, res) => {
-  res.send("CONGRATULATIONS, THIS ENDPOINT DOES NOTHING!");
+  res.status(200).json({ message: "CONGRATULATIONS, THIS ENDPOINT DOES NOTHING!" });
 });
 
 module.exports = server;

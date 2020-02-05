@@ -21,7 +21,7 @@ function getBy(filter) {
 
 function getById(id) {
     return db("responses as r")
-        .select("r.id", "r.strain") //DON'T send people the hash.
+        .select("r.id", "r.strain", "r.user_id")
         .where({ id })
         .first();
 }
