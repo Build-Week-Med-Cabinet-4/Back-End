@@ -9,7 +9,7 @@ module.exports = {
 
 function get() {
     return db("users as u")
-        .select("u.id", "u.username")
+        .select("u.id", "u.username", "u.email", "u.full_name")
 }
 
 function getBy(filter) {
@@ -19,7 +19,7 @@ function getBy(filter) {
 
 function getById(id) {
     return db("users as u")
-        .select("u.id", "u.username") //DON'T send people the hash.
+        .select("u.id", "u.username", "u.email", "u.full_name") //DON'T send people the hash.
         .where({ id })
         .first();
 }

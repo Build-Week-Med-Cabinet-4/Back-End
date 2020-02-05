@@ -34,7 +34,9 @@ API request data shape FROM front-end:
 ```
 {
     username: "your-username-here",
-    password: "super-secret-thing-SHHHhHHHSSh"
+    password: "super-secret-thing-SHHHhHHHSSh",
+    full_name: "Insert Your Seventy-Five Surnames Here",
+    email: "String@name.domain"
 }
 ```
 
@@ -43,7 +45,10 @@ If successful, the API will respond with the `newly created user`:
 ```
 {
     id: 1298347, //This can really be any integer, but it increments.
-    username: "some-stringy-thing"   
+    username: "your-username-here",
+    password: "super-secret-thing-SHHHhHHHSSh",
+    full_name: "Insert Your Seventy-Five Surnames Here",
+    email: "String@name.domain"
 }
 ```
 
