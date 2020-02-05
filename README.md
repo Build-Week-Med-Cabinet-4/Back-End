@@ -118,7 +118,8 @@ The API returns an `array` of `objects` containing all `responses`:
 Shape you want to send to the API: 
 ```
 {
-    "strain": "ouchy hurtie"
+    "strain": "ouchy hurtie",
+    "user_id": 1 
 }
 ```
 
