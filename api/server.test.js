@@ -2,17 +2,10 @@ const request = require("supertest");
 const server = require("./server.js");
 
 //test example
-it("runs the test",()=>{
+it("runs the test",() => {
  expect(true).toBe(true);
 });
 
-describe("server.js", ()=> {
-    describe("environment", ()=> {
-      it("should set environment to testing", ()=> {
-        expect(process.env.DB_ENV).toBe("testing");
-      });
-    });
-});
 
 describe("GET /", () => {
     it('Should return a 200 OK', () => {
@@ -31,11 +24,11 @@ describe("GET /", () => {
             });
         });
 
-        it("CONGRATULATIONS, THIS ENDPOINT DOES NOTHING!", ()=> {
-            return request(server)
-                .get("/")
-                .then(res => {
-                expect(res.body.api).toBe("CONGRATULATIONS, THIS ENDPOINT DOES NOTHING!");
-                });
-            });  
+        // it("CONGRATULATIONS, THIS ENDPOINT DOES NOTHING!", ()=> {
+        //     return request(server)
+        //         .get("/")
+        //         .then(res => {
+        //         expect(res.body.api).toBe("CONGRATULATIONS, THIS ENDPOINT DOES NOTHING!");
+        //         });
+        //     });  
         });
