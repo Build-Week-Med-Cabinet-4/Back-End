@@ -17,7 +17,9 @@ describe('auth-router', () => {
         .post('/api/auth/register')
         .send({
           "username": "Raymond",
-          "password": "test23"
+          "password": "test23",
+          "full_name": "RUTUTU RUTUTU RUTUTU that's the sound of a goblin charging you with his big axe",
+          "email": "gobbo@mordor.shadow"
         })
         .then(res => {
           expect(res.status).toBe(201);
@@ -29,7 +31,9 @@ describe('auth-router', () => {
         .post('/api/auth/register')
         .send({
           "username": "Raymond",
-          "password": "test23"
+          "password": "test23",
+          "full_name": "RUTUTU RUTUTU RUTUTU that's the sound of a goblin charging you with his big axe",
+          "email": "gobbo@mordor.shadow"
         })
         .then(res => {
           expect(res.type).toMatch(/json/i);
