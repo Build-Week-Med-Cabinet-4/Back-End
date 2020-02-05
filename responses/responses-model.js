@@ -11,7 +11,7 @@ module.exports = {
 
 function get() {
     return db("responses as r")
-        .select("r.id", "r.strain")
+        .select("r.id", "r.strain", "r.user_id")
 }
 
 function getBy(filter) {
