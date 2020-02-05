@@ -4,7 +4,7 @@ const verify = require("../auth/authenticate-middleware");
 
 const Responses = require("./responses-model")
 // /api/responses
-router.get("/", (request, response) => {
+router.get("/", verify, (request, response) => {
     Responses.get()
         .then((allResponses) => {
             response.status(200).json(
@@ -13,7 +13,7 @@ router.get("/", (request, response) => {
         })
 })
 
-router.post('/', (request, response) => {
+router.post('/', verify, (request, response) => {
     Responses.add(request.body)
         .then((newResponse) => {
             response.status(200).json({ ...newResponse })
@@ -24,7 +24,7 @@ router.post('/', (request, response) => {
         })
 });
 
-router.put("/:id", (request, response) => {
+router.put("/:id", verify, (request, response) => {
     Responses.update(request.params.id, request.body)
         .then((recordsUpdated) => {
             response.status(200).json({ updated: recordsUpdated })
@@ -35,7 +35,7 @@ router.put("/:id", (request, response) => {
         })
 })
 
-router.delete("/:id", (request, response) => {
+router.delete("/:id", verify, (request, response) => {
     Responses.remove(request.params.id)
         .then((recordsDeleted) => {
             response.status(200).json({ deleted: recordsDeleted })
