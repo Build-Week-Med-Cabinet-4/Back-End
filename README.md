@@ -33,10 +33,10 @@ API request data shape FROM front-end:
 
 ```
 {
-    username: "your-username-here",
-    password: "super-secret-thing-SHHHhHHHSSh",
-    full_name: "Insert Your Seventy-Five Surnames Here",
-    email: "String@name.domain"
+    "username": "your-username-here",
+    "password": "super-secret-thing-SHHHhHHHSSh",
+    "full_name": "Insert Your Seventy-Five Surnames Here",
+    "email": "String@name.domain"
 }
 ```
 
@@ -44,11 +44,11 @@ If successful, the API will respond with the `newly created user`:
 
 ```
 {
-    id: 1298347, //This can really be any integer, but it increments.
-    username: "your-username-here",
-    password: "super-secret-thing-SHHHhHHHSSh",
-    full_name: "Insert Your Seventy-Five Surnames Here",
-    email: "String@name.domain"
+    "id": 1298347, //This can really be any integer, but it increments.
+    "username": "your-username-here",
+    "password": "super-secret-thing-SHHHhHHHSSh",
+    "full_name": "Insert Your Seventy-Five Surnames Here",
+    "email": "String@name.domain"
 }
 ```
 
@@ -58,8 +58,8 @@ What the front-end should be sending to API:
 
 ```
 {
-    username: "zoinks",
-    password: "scoob"
+    "username": "zoinks",
+    "password": "scoob"
 }
 ```
 
