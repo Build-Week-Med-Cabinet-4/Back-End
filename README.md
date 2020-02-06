@@ -76,6 +76,36 @@ The API will respond with a `token` on login success:
 
 ### Responses
 
+#### `POST` to `/api/responses/search`: 
+
+Be sure to send a valid token in the `Authentication` header.
+
+The API accepts an `object` of `parameters` that can be `empty` or `string` to search with: 
+
+```
+{
+	"positive_effect": "euphoria",
+	"negative_effect": "",
+	"medical_effect": "",
+	"flavor": "apple",
+	"desc": ""
+}
+```
+
+And returns an `object` containing the `strain`:
+
+```
+{
+    "description": "1024 is a sativa-dominant hybrid bred in Spain by Medical Seeds Co. The breeders claim to guard the secret genetics due to security reasons, but regardless of its genetic heritage, 1024 is a THC powerhouse with a sweet and spicy bouquet. Subtle fruit flavors mix with an herbal musk to produce uplifting sativa effects. One specific phenotype is noted for having a pungent odor that fills a room, similar to burning incense.",
+    "effects": "Uplifted,Happy,Relaxed,Energetic,Creative",
+    "flavor": "Spicy/Herbal,Sage,Woody",
+    "id": 2,
+    "name": "1024",
+    "race": "sativa",
+    "rating": 4
+}
+```
+
 #### `GET` to `/api/responses/:id`: 
 
 Be sure to send a valid token in the `Authentication` header.
