@@ -124,11 +124,12 @@ Shape you want to send to the API:
 #### `POST` to `/api/responses/delete`:
 
 Be sure to send a `user_id` and a `strain_id` in the body of your request.
-
+```
 {
     "strain_id": 50,
     "user_id": 51 
 }
+```
 
 Basically, what you're doing is telling the API to delete the specified `strain` from the `user`'s data. But the API needs to know WHICH `user` you are referring to.
 
