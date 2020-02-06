@@ -4,9 +4,11 @@ Under Construction!
 
 Note: Many endpoints in this API return an array of objects for ease-of-mapping in the front end. This is a convenience feature that might not always be available depending on how the data we want to send is structured. In the case that you should receive an object of objects, go ahead and use `Object.values(thingToConvert)` to convert it to an array of objects.
 
+## Note 2 electric boogaloo: The `/responses` endpoints have COMPLETELY CHANGED! Be sure to read these docs thoroughly!
+
 ## Things We, The Back-End, Need To Do
 
-- [ ] Find out -EXACTLY- what recommendations are. What they contain and belong to, etc. 
+- [x] Find out -EXACTLY- what recommendations are. What they contain and belong to, etc. 
   - A recommendation is: 
      ```
         {
@@ -72,48 +74,39 @@ The API will respond with a `token` on login success:
 }
 ```
 
-### Users
-
-#### `GET` to `/api/users`:
-
-Don't send a body, instead send the token you got from the `login` endpoint inside your `Authentication` header.
-
-If successful, the API will return an `array` of `objects` containing all `users`: 
-
-```
-[
-    "0": {
-        "id": 1,
-        "username": "moomer"
-    }
-    "1": {
-        "id": 2,
-        "username": "donkey kong"
-    }
-]
-```
-
 ### Responses
 
-#### `GET` to `/api/responses`: 
+#### `GET` to `/api/responses/:id`: 
 
-Be sure to send a valid token in the `Authentication` header. (Once that actually gets implemented...)
+Be sure to send a valid token in the `Authentication` header.
 
-The API returns an `array` of `objects` containing all `responses`: 
+The API accepts a `strain_id` in the `URI` and returns an `object` containing the `strain`: 
+
+```
+{
+    "description": "1024 is a sativa-dominant hybrid bred in Spain by Medical Seeds Co. The breeders claim to guard the secret genetics due to security reasons, but regardless of its genetic heritage, 1024 is a THC powerhouse with a sweet and spicy bouquet. Subtle fruit flavors mix with an herbal musk to produce uplifting sativa effects. One specific phenotype is noted for having a pungent odor that fills a room, similar to burning incense.",
+    "effects": "Uplifted,Happy,Relaxed,Energetic,Creative",
+    "flavor": "Spicy/Herbal,Sage,Woody",
+    "id": 2,
+    "name": "1024",
+    "race": "sativa",
+    "rating": 4
+}
+```
+
+#### `GET` to `/api/responses/user/:id`: 
+
+Be sure to send a valid token in the `Authentication` header.
+
+The API accepts a `user_id` in the `URI` and returns an `array` of `object`s containing the `strain_id`s for that `user`: 
 
 ```
 [
-    "0": {
-        "id": 1,
-        "strain": "Nuclear War Cube"
+    {
+        "strain_id": 421
     },
-    "1": {
-        "id": 2,
-        "strain": "Gamer Fuel"
-    },
-    "2": {
-        "id": 3,
-        "strain": "Dogg's Select"
+    {
+        "strain_id": 68
     }
 ]
 ```
@@ -123,44 +116,21 @@ The API returns an `array` of `objects` containing all `responses`:
 Shape you want to send to the API: 
 ```
 {
-    "strain": "ouchy hurtie",
+    "strain_id": 419,
     "user_id": 1 
 }
 ```
 
-The API will send back the new `response` object, including the `id`:
+#### `POST` to `/api/responses/delete`:
 
-```
+Be sure to send a `user_id` and a `strain_id` in the body of your request.
+
 {
-    "id": 5,
-    "strain": "moo"
+    "strain_id": 50,
+    "user_id": 51 
 }
-```
 
-#### `PUT` to `/api/responses/:id`:
-
-Shape to send the API:
-```
-{
-    "strain": "NEW MOO!!!!11!!"
-}
-```
-
-In this case, the API is going to return the `number of records updated`. Pray for all it's worth that this number is `1` and only ever `1`, not any other number.
-
-If it is ever another number, ping devs IMMEDIATELY.
-
-Response: 
-
-```
-{
-    "updated": 1
-}
-```
-
-#### `DELETE` to `/api/responses/:id`:
-
-You don't have to send anything but a `token` in the `Authorization` header.
+Basically, what you're doing is telling the API to delete the specified `strain` from the `user`'s data. But the API needs to know WHICH `user` you are referring to.
 
 The API is going to return the `number of records deleted`:
 
@@ -171,3 +141,41 @@ The API is going to return the `number of records deleted`:
 ```
 
 Same thing as above applies. If this isn't `1`, something has gone horribly wrong.
+
+
+## DS Database API stuff (Front-end doesn't need to worry about this).
+
+#### POST to `https://med-cabinet-4-api.herokuapp.com/predict`:
+```
+{
+"positive_effect": "euphoria",
+"negative_effect": "DEATH",
+"medical_effect": "immortality",
+"flavor": "euphoria",
+"desc": "euphoria"
+}
+```
+
+Response will be: 
+
+```
+{
+    "description": "Cherry OG by Emerald Triangle Seeds is a hybrid cannabis strain bred by combining Cherry Thai, Afghani, and Lost Coast OG genetics. A 50/50 hybrid, Cherry OG truly brings you the best of both sativa and indica worlds as it delivers full-body euphoria alongside high-flying cerebral lucidity. While its name sets expectations of a fruity cherry aroma, this strain can sometimes express more sour and diesel-like flavors. ",
+    "effects": "Euphoric,Relaxed,Happy,Uplifted,Hungry",
+    "flavor": "Berry,Diesel,Sweet",
+    "id": 511,
+    "name": "Cherry-Og",
+    "race": "hybrid",
+    "rating": 4
+}
+```
+
+### GET to `https://med-cabinet-4-api.herokuapp.com/search`:
+
+```
+{
+    "id": 1-3018
+}
+```
+
+Response is same as above.

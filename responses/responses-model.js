@@ -1,48 +1,36 @@
 const db = require("../database/dbConfig.js");
+const axios = require("axios");
 
 module.exports = {
-    get,
-    getBy,
-    getById,
     add,
-    remove,
-    update
-}
-
-function get() {
-    return db("responses as r")
-        .select("r.id", "r.strain", "r.user_id")
-}
-
-function getBy(filter) {
-    return db("responses")
-        .where(filter)
+    getStrainByUserId,
+    deleteByUserIdAndStrainId
 }
 
 function getById(id) {
-    return db("responses as r")
-        .select("r.id", "r.strain", "r.user_id")
+    return db("user-strains")
         .where({ id })
-        .first();
 }
 
-function add(response) {
-    return db("responses")
-        .insert(response)
-        .then(ids => {
-            const [id] = ids;
-            return getById(id)
+function getStrainByUserId(userID) {
+    return db("user-strains")
+        // .groupBy("user_id")
+        .select("strain_id")
+        .where("user_id", "=", userID)
+}
+
+function add(newUserStrain) {
+    return db("user-strains")
+        .insert(newUserStrain)
+        .then((ids) => {
+            const [id] = ids
+            return getById(id);
         })
 }
 
-function remove(id) {
-    return db("responses")
+function deleteByUserIdAndStrainId(userID, strainID) {
+    return db("user-strains")
         .delete()
-        .where({ id })
-}
-
-function update(id, newResponse) {
-    return db("responses")
-        .update(newResponse)
-        .where({ id })
+        .where("user_id", "=", userID)
+        .and("strain_id", "=", strainID)
 }
